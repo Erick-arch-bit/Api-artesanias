@@ -1,18 +1,7 @@
-import { Elysia } from 'elysia'
-import { cors } from '@elysiajs/cors'
-import 'dotenv/config'
+import { app } from './app'
+import { env } from './config/env'
 
-const app = new Elysia()
-  .use(cors())
-  .get('/health', () => ({
-    success: true,
-    data: {
-      status: 'ok',
-      service: 'api-artesanias',
-    },
-    error: null,
-  }))
-  .listen(3000)
+app.listen({ port: env.PORT, hostname: env.HOST })
 
 console.log(
   `API de Artesanías ejecutándose en http://${app.server?.hostname}:${app.server?.port}`,

@@ -8,11 +8,13 @@
     "drizzle-kit": "^0.31.10"
   },
   "scripts": {
-  "dev": "bun --watch src/server.ts",
-  "start": "bun src/server.ts",
-  "db:generate": "drizzle-kit generate",
-  "db:migrate": "drizzle-kit migrate"
-},
+    "dev": "bun --watch src/server.ts",
+    "start": "bun src/server.ts",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:check": "bun src/database/check.ts",
+    "test": "bun test"
+  },
   "peerDependencies": {
     "typescript": "^5"
   },

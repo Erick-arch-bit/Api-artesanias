@@ -5,8 +5,36 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1788395991335,
-      "tag": "0000_graceful_may_parker",
+      "when": 1789804673127,
+      "tag": "0000_tearful_wildside",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1789999999999,
+      "tag": "0001_harden_payments_and_costs",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1790000000000,
+      "tag": "0002_add_sale_status",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1790000000001,
+      "tag": "0003_product_auth_payment_corrections",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1790000000002,
+      "tag": "0004_initial_stock_lots_and_payment_checks",
       "breakpoints": true
     }
   ]
