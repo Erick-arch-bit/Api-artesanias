@@ -11,7 +11,7 @@ import { categoriesService } from './categories.service'
 import { successResponse } from '../../shared/http/responses'
 import { authMiddleware, requireRole } from '../../shared/middleware/auth'
 
-export const categoriesRoutes = new Elysia({ prefix: '/api/categories' })
+export const categoriesRoutes = new Elysia({ prefix: '/api/v1/categories' })
   .use(authMiddleware)
   .get(
     '/',

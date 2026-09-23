@@ -86,8 +86,8 @@ describe('registro de autenticación', () => {
 })
 
 describe('formato uniforme de errores de validación (sin DB)', () => {
-  test('POST /api/categories sin nombre devuelve 422 uniforme', async () => {
-    const { status, body } = await call('/api/categories', {
+  test('POST /api/v1/categories sin nombre devuelve 422 uniforme', async () => {
+    const { status, body } = await call('/api/v1/categories', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({}),
@@ -99,8 +99,8 @@ describe('formato uniforme de errores de validación (sin DB)', () => {
     expect(body.meta).toBeNull()
   })
 
-  test('POST /api/products con precio negativo devuelve 422 uniforme', async () => {
-    const { status, body } = await call('/api/products', {
+  test('POST /api/v1/products con precio negativo devuelve 422 uniforme', async () => {
+    const { status, body } = await call('/api/v1/products', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -118,8 +118,8 @@ describe('formato uniforme de errores de validación (sin DB)', () => {
     expect(body.error!.code).toBe('VALIDATION_ERROR')
   })
 
-  test('POST /api/products con stock decimal devuelve 422 uniforme', async () => {
-    const { status, body } = await call('/api/products', {
+  test('POST /api/v1/products con stock decimal devuelve 422 uniforme', async () => {
+    const { status, body } = await call('/api/v1/products', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -136,16 +136,16 @@ describe('formato uniforme de errores de validación (sin DB)', () => {
     expect(body.error!.code).toBe('VALIDATION_ERROR')
   })
 
-  test('GET /api/categories con id no-uuid devuelve 422 uniforme', async () => {
-    const { status, body } = await call('/api/categories/{{categoryId}}')
+  test('GET /api/v1/categories con id no-uuid devuelve 422 uniforme', async () => {
+    const { status, body } = await call('/api/v1/categories/{{categoryId}}')
     expect(status).toBe(422)
     expect(body.success).toBe(false)
     expect(body.data).toBeNull()
     expect(body.error!.code).toBe('VALIDATION_ERROR')
   })
 
-  test('GET /api/products con id no-uuid devuelve 422 uniforme', async () => {
-    const { status, body } = await call('/api/products/no-es-uuid')
+  test('GET /api/v1/products con id no-uuid devuelve 422 uniforme', async () => {
+    const { status, body } = await call('/api/v1/products/no-es-uuid')
     expect(status).toBe(422)
     expect(body.success).toBe(false)
     expect(body.error!.code).toBe('VALIDATION_ERROR')

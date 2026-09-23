@@ -11,7 +11,7 @@ import { productsService } from './products.service'
 import { successResponse } from '../../shared/http/responses'
 import { authMiddleware, requireRole } from '../../shared/middleware/auth'
 
-export const productsRoutes = new Elysia({ prefix: '/api/products' })
+export const productsRoutes = new Elysia({ prefix: '/api/v1/products' })
   .use(authMiddleware)
   .get(
     '/',
