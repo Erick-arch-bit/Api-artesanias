@@ -1,6 +1,21 @@
 import 'dotenv/config'
 import { z } from 'zod'
 
+const booleanFromString = z.preprocess((value) => {
+  if (typeof value === 'string') {
+    const normalized = value.trim().toLowerCase()
+    if (normalized === 'true') return true
+    if (normalized === 'false') return false
+  }
+
+  return value
+}, z.boolean())
+
+const optionalBootstrapToken = z.preprocess((value) => {
+  if (typeof value === 'string' && value.trim() === '') return undefined
+  return value
+}, z.string().min(32).optional())
+
 export const envSchema = z.object({
   HOST: z.string().default('0.0.0.0'),
   PORT: z.coerce.number().int().positive().default(3000),
@@ -10,8 +25,8 @@ export const envSchema = z.object({
   JWT_EXPIRES_IN: z.string().min(1, 'JWT_EXPIRES_IN es obligatoria').default('7d'),
   NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
   CORS_ORIGIN: z.string().min(1, 'CORS_ORIGIN es obligatoria').default('*'),
-  AUTH_REGISTRATION_ENABLED: z.coerce.boolean().default(false),
-  AUTH_BOOTSTRAP_TOKEN: z.string().min(32).optional(),
+  AUTH_REGISTRATION_ENABLED: booleanFromString.default(false),
+  AUTH_BOOTSTRAP_TOKEN: optionalBootstrapToken,
 })
 
 export function createEnvConfig(rawEnv: Record<string, string | undefined>) {

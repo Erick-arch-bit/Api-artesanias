@@ -39,6 +39,20 @@ describe('createEnvConfig', () => {
     expect(env.AUTH_BOOTSTRAP_TOKEN).toBe('a'.repeat(32))
   })
 
+  test('acepta bootstrap vacío cuando el registro está deshabilitado', () => {
+    const env = createEnvConfig({
+      NODE_ENV: 'production',
+      DATABASE_SSL: 'require',
+      JWT_SECRET: 'a'.repeat(32),
+      CORS_ORIGIN: 'https://api-artesanias.onrender.com',
+      AUTH_REGISTRATION_ENABLED: 'false',
+      AUTH_BOOTSTRAP_TOKEN: '',
+    })
+
+    expect(env.AUTH_REGISTRATION_ENABLED).toBe(false)
+    expect(env.AUTH_BOOTSTRAP_TOKEN).toBeUndefined()
+  })
+
   test('rechaza una contraseña inexistente para JWT', () => {
     expect(() =>
       createEnvConfig({
